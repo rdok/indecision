@@ -15,5 +15,16 @@ services:
       - .:/app
       - yarn:/usr/local/share/.cache/yarn/v6
 
+  yarn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: yarn
+    working_dir: /app
+    user: node
+    volumes:
+      - .:/app
+      - yarn:/usr/local/share/.cache/yarn/v6
+
 volumes:
   yarn:

@@ -1,0 +1,13 @@
+{
+  "name": "indecision",
+  "version": "1.0.0",
+  "description": "Decision maker from your list.",
+  "main": "public/index.js",
+  "repository": "https://github.com/rdok/indecision",
+  "author": "Rizart Dokollari",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
