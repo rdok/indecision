@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  live-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: live-server public
+    ports:
+    - "8080:8080"
+    working_dir: /app
+    user: node
+    volumes:
+      - .:/app
+      - yarn:/usr/local/share/.cache/yarn/v6
+
+volumes:
+  yarn:
