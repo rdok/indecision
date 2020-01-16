@@ -15,11 +15,20 @@ services:
       - .:/app
       - yarn:/usr/local/share/.cache/yarn/v6
 
-  yarn:
+  transpile-watcher:
     build:
       context: .
       dockerfile: Dockerfile
-    command: yarn
+    command: yarn run transpile-watcher
+    working_dir: /app
+    volumes:
+      - .:/app
+
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: tail -f /dev/null
     working_dir: /app
     user: node
     volumes:

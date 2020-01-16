@@ -6,6 +6,9 @@
   "repository": "https://github.com/rdok/indecision",
   "author": "Rizart Dokollari",
   "license": "MIT",
+  "scripts": {
+    "transpile-watcher": "babel src/app.js --out-file public/app.js --presets=env,react --watch"
+  },
   "dependencies": {
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1"
