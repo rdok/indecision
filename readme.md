@@ -1,5 +1,7 @@
 # Indecision
-> Hands on React fundamentals
+![Deployment](https://github.com/rdok/indecision/workflows/CI/badge.svg) 
+> Hands on React fundamentals 
+
 
 ### Specs
 - List of options (restaurant, business to start)
