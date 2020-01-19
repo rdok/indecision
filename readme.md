@@ -12,6 +12,9 @@
 ### Quickstart
 
 ```
+cp .env.example .env
+# If user id `id -u|-g` is not 1000, update accordingly
+
 docker-compose up -d
 docker-compose run node yarn
 ```

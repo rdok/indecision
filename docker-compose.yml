@@ -30,7 +30,7 @@ services:
       dockerfile: Dockerfile
     command: tail -f /dev/null
     working_dir: /app
-    user: node
+    user: "${UID}:${GID}"
     volumes:
       - .:/app
       - yarn:/usr/local/share/.cache/yarn/v6
