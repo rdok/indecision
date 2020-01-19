@@ -10,7 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Sync with bucket
-      run: aws s3 sync . s3://indecision-rdok --exclude "*node_modules/*" --exclude "*.idea/*"  --exclude "*.git/*" --delete
+      run: |
+        docker-compose run --rm node yarn
+        docker-compose run --rm node yarn run transpile
+        aws s3 sync ./public s3://indecision-rdok/public --exclude "*node_modules/*" --exclude "*.idea/*"  --exclude "*.git/*" --delete
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}

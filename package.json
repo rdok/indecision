@@ -7,7 +7,8 @@
   "author": "Rizart Dokollari",
   "license": "MIT",
   "scripts": {
-    "transpile-watcher": "babel src --out-dir public --presets=env,react --watch"
+    "transpile": "babel src --out-dir public --presets=env,react",
+    "transpile-watcher": "yarn run transpile --watch"
   },
   "dependencies": {
     "babel-preset-env": "1.5.2",
