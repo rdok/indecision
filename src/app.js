@@ -2,7 +2,7 @@ class App extends React.Component {
     constructor() {
         super();
         this.handleOptionsRemoval = this.handleOptionsRemoval.bind(this)
-        this.handleRemoveOption = this.handleRemoveOption.bind(this)
+        this.handleDeleteOption = this.handleDeleteOption.bind(this)
         this.handleAddOption = this.handleAddOption.bind(this)
         this.handleWhatTodoSuggestion = this.handleWhatTodoSuggestion.bind(this)
         this.state = {
@@ -13,21 +13,40 @@ class App extends React.Component {
         }
     }
 
+    componentWillUnmount(prevProps, prevState) {
+        console.log('componentDidUnmount')
+    }
+
+    componentDidMount(prevProps, prevState) {
+        try {
+            let options = JSON.parse(localStorage.getItem('options'))
+            options && this.setState(() => ({options}))
+        } catch (e) {
+            // loads default options
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const optionChanged = JSON.stringify(prevState.options)
+            !== JSON.stringify(this.state.options)
+
+        if (!optionChanged) return;
+
+        console.log('saving')
+        localStorage.setItem('options', JSON.stringify(this.state.options))
+    }
+
     handleWhatTodoSuggestion() {
         const index = Math.floor(Math.random() * this.state.options.length)
 
         this.setState((prevState) => ({suggestedToDo: prevState.options[index]}))
     }
 
-    handleRemoveOption(option) {
+    handleDeleteOption(option) {
 
-        this.setState((prevState) => {
-            let newOptions = prevState.options
-            const index = prevState.options.indexOf(option)
-             newOptions.splice(index, 1)
-
-            return {options: newOptions}
-        })
+        this.setState((prevState) => ({
+            options: prevState.options.filter((item) => item !== option)
+        }))
     }
 
     handleAddOption(option) {
@@ -58,7 +77,7 @@ class App extends React.Component {
                 <Options
                     options={this.state.options}
                     removeOptions={this.handleOptionsRemoval}
-                    handleRemoveOption={this.handleRemoveOption}
+                    handleDeleteOption={this.handleDeleteOption}
                 />
                 <AddOption
                     options={this.state.options}
@@ -130,37 +149,48 @@ class AddOption extends React.Component {
     }
 }
 
-const DeleteOption = ({value, handleRemoveOption}) => {
+const DeleteOption = ({option, handleDeleteOption}) => {
+    const style = {
+        background: 'none',
+        border: 'none',
+        padding: '0!important',
+        textDecoration: 'underline',
+        cursor: 'pointer',
+    }
+
     return (
-        <button onClick={() => handleRemoveOption(value)}>Delete</button>
+        <button
+            style={style}
+            onClick={() => handleDeleteOption(option)}
+        >Delete</button>
     )
 }
 
-const Option = ({value, handleRemoveOption}) => {
+const Option = ({option, handleDeleteOption}) => {
     return (
         <li>
-            {value}
+            {option}
             <DeleteOption
-                value={value}
-                handleRemoveOption={handleRemoveOption}
+                option={option}
+                handleDeleteOption={handleDeleteOption}
             />
         </li>)
 }
 
-const Options = ({options, removeOptions, handleRemoveOption}) => {
+const Options = ({options, removeOptions, handleDeleteOption}) => {
 
     const items = options.map((option) => {
         return <Option
             key={option}
-            value={option}
-            handleRemoveOption={handleRemoveOption}
+            option={option}
+            handleDeleteOption={handleDeleteOption}
         />
     })
 
     return (
         <div>
             <h2>Options</h2>
-            <p>{options.length > 0 || 'No options'}</p>
+            <p>{options.length > 0 || 'Add an option to get started!'}</p>
             <ol>{items}</ol>
             <button onClick={removeOptions}>Remove all</button>
         </div>
