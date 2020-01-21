@@ -8,10 +8,15 @@ module.exports = {
     },
     mode: 'development',
     module: {
-        rules:[{
+        rules: [{
             loader: 'babel-loader',
             test: /\.js$/,
             exclude: /node_modules/
         }]
+    },
+    devtool: 'cheap-module-eval-source-map',
+    devServer: {
+        contentBase: path.resolve(__dirname, 'public'),
+        host: '0.0.0.0'
     }
 }

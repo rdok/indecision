@@ -6,14 +6,14 @@ import {Action} from "./action"
 import {CreateOption, ListOptions} from "./option/index"
 
 export class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleOptionsRemoval = this.handleOptionsRemoval.bind(this)
         this.handleDeleteOption = this.handleDeleteOption.bind(this)
         this.handleAddOption = this.handleAddOption.bind(this)
         this.handleWhatTodoSuggestion = this.handleWhatTodoSuggestion.bind(this)
         this.state = {
-            title: 'Indecision App',
+            title: 'Indecision Ap2',
             subtitle: 'Put your life in the hands of a computer',
             options: ['Read', 'Train', 'Study', 'See a movie'],
             suggestedToDo: null
@@ -21,12 +21,10 @@ export class App extends React.Component {
     }
 
     componentWillUnmount(prevProps, prevState) {
-        console.log('componentDidUnmount')
     }
 
     componentDidMount(prevProps, prevState) {
         try {
-            console.log('test')
             let options = JSON.parse(localStorage.getItem('options'))
             options && this.setState(() => ({options}))
         } catch (e) {
@@ -57,7 +55,6 @@ export class App extends React.Component {
     }
 
     handleAddOption(option) {
-        console.log('handleAddOption')
 
         if (validator.isEmpty(option)) {
             throw 'The option cannot be empty.'

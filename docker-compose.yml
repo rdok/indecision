@@ -2,33 +2,22 @@ version: '3'
 
 services:
 
-  development-server:
+  dev-server:
     restart: always
     image: node:13-alpine3.10
-    command: yarn run serve
-    ports:
-    - "8080:8080"
-    working_dir: /app
-    volumes:
-      - .:/app
-
-  build-watcher:
-    restart: always
-    image: node:13-alpine3.10
-    command: yarn run build-watch
-    working_dir: /app
+    command: yarn run dev-server
     user: "${UID}:${GID}"
+    working_dir: /app
     volumes:
       - .:/app
+    ports:
+      - "8080:8080"
 
   node:
+    restart: always
     image: node:13-alpine3.10
     command: tail -f /dev/null
-    working_dir: /app
     user: "${UID}:${GID}"
+    working_dir: /app
     volumes:
       - .:/app
-      - yarn:/usr/local/share/.cache/yarn/v6
-
-volumes:
-  yarn:

@@ -11,6 +11,7 @@ export const ListOptions = ({options, removeOptions, handleDeleteOption}) => {
             handleDeleteOption={handleDeleteOption}
         />
     })
+    console.log('handleAddOption')
 
     return (
         <div>
