@@ -7,19 +7,21 @@
   "author": "Rizart Dokollari",
   "license": "MIT",
   "scripts": {
-    "development-server": "live-server public",
-    "bundle": "webpack",
-    "webpack-watch": "webpack --watch",
-    "compile": "babel src --out-dir bin --presets=env,react",
-    "babel-watch": "yarn run compile --watch"
+    "serve": "live-server public",
+    "build": "webpack",
+    "build-watch": "webpack --watch"
   },
   "dependencies": {
-    "babel-cli": "6.24",
-    "babel-preset-env": "1.5.2",
-    "babel-preset-react": "6.24.1",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
     "live-server": "^1.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "webpack": "3.1"
+    "validator": "^12.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }

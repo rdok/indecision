@@ -3,25 +3,19 @@ version: '3'
 services:
 
   development-server:
+    restart: always
     image: node:13-alpine3.10
-    command: yarn run development-server
+    command: yarn run serve
     ports:
     - "8080:8080"
     working_dir: /app
     volumes:
       - .:/app
 
-  babel-compiler:
+  build-watcher:
+    restart: always
     image: node:13-alpine3.10
-    command: yarn run babel-watch
-    working_dir: /app
-    user: "${UID}:${GID}"
-    volumes:
-      - .:/app
-
-  webpack-bundler:
-    image: node:13-alpine3.10
-    command: yarn run webpack-watch
+    command: yarn run build-watch
     working_dir: /app
     user: "${UID}:${GID}"
     volumes:

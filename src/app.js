@@ -1,4 +1,5 @@
 import React from 'react'
+import validator from 'validator'
 
 import {Header} from "./header"
 import {Action} from "./action"
@@ -25,6 +26,7 @@ export class App extends React.Component {
 
     componentDidMount(prevProps, prevState) {
         try {
+            console.log('test')
             let options = JSON.parse(localStorage.getItem('options'))
             options && this.setState(() => ({options}))
         } catch (e) {
@@ -55,7 +57,9 @@ export class App extends React.Component {
     }
 
     handleAddOption(option) {
-        if (!option) {
+        console.log('handleAddOption')
+
+        if (validator.isEmpty(option)) {
             throw 'The option cannot be empty.'
         } else if (this.state.options.indexOf(option) !== -1) {
             throw 'The selected option already exists.'

@@ -16,7 +16,7 @@ jobs:
     - name: Build
       run: |
         docker-compose run --rm node yarn
-        docker-compose run --rm node yarn run compile
+        docker-compose run --rm node yarn run build
     - name: Sync with bucket
       run: aws s3 sync ./public s3://indecision-rdok/public --delete
       env:
