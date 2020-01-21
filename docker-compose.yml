@@ -2,32 +2,33 @@ version: '3'
 
 services:
 
-  live-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: live-server public
+  development-server:
+    image: node:13-alpine3.10
+    command: yarn run development-server
     ports:
     - "8080:8080"
     working_dir: /app
-    user: node
     volumes:
       - .:/app
-      - yarn:/usr/local/share/.cache/yarn/v6
 
-  transpile-watcher:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: yarn run transpile-watcher
+  babel-compiler:
+    image: node:13-alpine3.10
+    command: yarn run babel-watch
     working_dir: /app
+    user: "${UID}:${GID}"
+    volumes:
+      - .:/app
+
+  webpack-bundler:
+    image: node:13-alpine3.10
+    command: yarn run webpack-watch
+    working_dir: /app
+    user: "${UID}:${GID}"
     volumes:
       - .:/app
 
   node:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:13-alpine3.10
     command: tail -f /dev/null
     working_dir: /app
     user: "${UID}:${GID}"
