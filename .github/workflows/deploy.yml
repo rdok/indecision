@@ -7,6 +7,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_OUTPUT: ${{ secrets.AWS_DEFAULT_OUTPUT }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+
     steps:
     - uses: actions/checkout@v1
     - name: Set env
@@ -17,10 +25,7 @@ jobs:
       run: |
         docker-compose run --rm node yarn
         docker-compose run --rm node yarn run build
-    - name: Sync with bucket
+    - name: Sync with S3
       run: aws s3 sync ./public s3://training-apps-rdok/indecision --delete
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_OUTPUT: ${{ secrets.AWS_DEFAULT_OUTPUT }}
+    - name: Create CloudFront invalidation
+      run: aws cloudfront create-invalidation  --distribution-id "${AWS_CLOUDFRONT_DISTRIBUTION_ID}" --paths /indecision/index.html /indecision/bundle.js
