@@ -73,7 +73,7 @@ export class App extends React.Component {
 
         return (
             <div>
-                <Header title={this.state.title} subtitle={this.subtitle}/>
+                <Header title={this.state.title} subtitle={this.state.subtitle}/>
                 <Action
                     hasOptions={this.state.options.length > 0}
                     suggestedToDo={this.state.suggestedToDo}
