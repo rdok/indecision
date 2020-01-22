@@ -4,7 +4,7 @@ services:
 
   dev-server:
     restart: always
-    image: node:13-alpine3.10
+    image: node:13-alpine3.11
     command: yarn run dev-server
     user: "${UID}:${GID}"
     working_dir: /app
@@ -15,9 +15,11 @@ services:
 
   node:
     restart: always
-    image: node:13-alpine3.10
+    image: node:13-alpine3.11
     command: tail -f /dev/null
     user: "${UID}:${GID}"
     working_dir: /app
+    environment:
+      - YARN_CACHE_FOLDER=/app/node_cache/yarn
     volumes:
       - .:/app

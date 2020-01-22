@@ -17,6 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: cache_node
+        key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-${{ env.cache-name }}-
+          ${{ runner.os }}-node-
+          ${{ runner.os }}-
     - name: Set env
       run: |
         echo ::set-env name=ID::$(id -u)
