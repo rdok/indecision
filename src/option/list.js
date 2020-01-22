@@ -17,7 +17,12 @@ export const ListOptions = ({options, removeOptions, handleDeleteOption}) => {
             <h2>Options</h2>
             <p>{options.length > 0 || 'Add an option to get started!'}</p>
             <ol>{items}</ol>
-            <button onClick={removeOptions}>Remove all</button>
+            <button
+                className='button button--link'
+                onClick={removeOptions}
+            >
+                Remove all
+            </button>
         </div>
     )
 }

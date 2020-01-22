@@ -5,6 +5,7 @@ export const Action = ({hasOptions, handleTodoSuggestion, suggestedToDo}) => (
         <button
             disabled={!hasOptions}
             onClick={handleTodoSuggestion}
+            className='big-button'
         >
             What should I do?
         </button>
