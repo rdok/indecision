@@ -1,11 +1,8 @@
 import React from "react"
 
 export class CreateOption extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {error: undefined}
-    }
+    state = {error: undefined}
 
     addOption(e) {
         e.preventDefault()
@@ -22,16 +19,14 @@ export class CreateOption extends React.Component {
         this.setState(() => ({error: undefined}))
     }
 
-    render() {
-        return (
-            <div>
-                <h3>Add option</h3>
-                <form onSubmit={this.addOption.bind(this)}>
-                    <input type="text" name="option"/>
-                    <button> Add</button>
-                    {this.state.error && <p>{this.state.error}</p>}
-                </form>
-            </div>
-        )
-    }
+    render = () => (
+        <div>
+            <h3>Add option</h3>
+            <form onSubmit={this.addOption.bind(this)}>
+                <input type="text" name="option"/>
+                <button> Add</button>
+                {this.state.error && <p>{this.state.error}</p>}
+            </form>
+        </div>
+    )
 }

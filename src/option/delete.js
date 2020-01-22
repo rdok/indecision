@@ -1,18 +1,16 @@
 import React from "react"
 
-export const DeleteOption = ({option, handleDeleteOption}) => {
-    const style = {
-        background: 'none',
-        border: 'none',
-        padding: '0!important',
-        textDecoration: 'underline',
-        cursor: 'pointer',
-    }
-
-    return (
-        <button
-            style={style}
-            onClick={() => handleDeleteOption(option)}
-        >Delete</button>
-    )
+const style = {
+    background: 'none',
+    border: 'none',
+    padding: '0!important',
+    textDecoration: 'underline',
+    cursor: 'pointer',
 }
+
+export const DeleteOption = ({option, handleDeleteOption}) => (
+    <button
+        style={style}
+        onClick={() => handleDeleteOption(option)}
+    >Delete</button>
+)

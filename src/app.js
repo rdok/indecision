@@ -4,20 +4,15 @@ import validator from 'validator'
 import {Header} from "./header"
 import {Action} from "./action"
 import {CreateOption, ListOptions} from "./option/index"
+import {ModalOption} from "./option/modal"
 
 export class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleOptionsRemoval = this.handleOptionsRemoval.bind(this)
-        this.handleDeleteOption = this.handleDeleteOption.bind(this)
-        this.handleAddOption = this.handleAddOption.bind(this)
-        this.handleWhatTodoSuggestion = this.handleWhatTodoSuggestion.bind(this)
-        this.state = {
-            title: 'Indecision Ap2',
-            subtitle: 'Put your life in the hands of a computer',
-            options: ['Read', 'Train', 'Study', 'See a movie'],
-            suggestedToDo: null
-        }
+
+    state = {
+        title: 'Indecision Ap2',
+        subtitle: 'Put your life in the hands of a computer',
+        options: ['Read', 'Train', 'Study', 'See a movie'],
+        suggestedToDo: null
     }
 
     componentWillUnmount(prevProps, prevState) {
@@ -41,20 +36,24 @@ export class App extends React.Component {
         localStorage.setItem('options', JSON.stringify(this.state.options))
     }
 
-    handleWhatTodoSuggestion() {
+    handleOptionConfirmation = () => {
+        this.setState({suggestedToDo: null})
+    }
+
+    handleWhatTodoSuggestion = () => {
         const index = Math.floor(Math.random() * this.state.options.length)
 
         this.setState((prevState) => ({suggestedToDo: prevState.options[index]}))
     }
 
-    handleDeleteOption(option) {
+    handleDeleteOption = (option) => {
 
         this.setState((prevState) => ({
             options: prevState.options.filter((item) => item !== option)
         }))
     }
 
-    handleAddOption(option) {
+    handleAddOption = (option) => {
 
         if (validator.isEmpty(option)) {
             throw 'The option cannot be empty.'
@@ -66,7 +65,7 @@ export class App extends React.Component {
         })
     }
 
-    handleOptionsRemoval() {
+    handleOptionsRemoval = () => {
         this.setState(() => ({options: []}))
     }
 
@@ -88,6 +87,11 @@ export class App extends React.Component {
                 <CreateOption
                     options={this.state.options}
                     handleAddOption={this.handleAddOption}
+                />
+                <ModalOption
+                    option={this.state.suggestedToDo}
+                    appElement={this.props.appElement}
+                    handleOptionConfirmation={this.handleOptionConfirmation}
                 />
             </div>
         )

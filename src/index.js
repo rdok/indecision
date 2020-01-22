@@ -3,4 +3,7 @@ import ReactDOM from 'react-dom'
 
 import {App} from './app'
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+const root = document.getElementById('root')
+
+ReactDOM.render(<App appElement={root}/>, root)
+
