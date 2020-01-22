@@ -21,10 +21,10 @@ export class CreateOption extends React.Component {
 
     render = () => (
         <div>
-            <h3>Add option</h3>
+            <h3>New option</h3>
             <form onSubmit={this.addOption.bind(this)}>
                 <input type="text" name="option"/>
-                <button className='button button--link'> Add</button>
+                <button className='button'> Add</button>
                 {this.state.error && <p>{this.state.error}</p>}
             </form>
         </div>

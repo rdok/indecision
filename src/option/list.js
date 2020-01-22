@@ -14,15 +14,19 @@ export const ListOptions = ({options, removeOptions, handleDeleteOption}) => {
 
     return (
         <div>
-            <h2>Options</h2>
-            <p>{options.length > 0 || 'Add an option to get started!'}</p>
+            <div className='widget-header'>
+                <h2 className='widget-header__title'>Your options</h2>
+                <button
+                    className='button button--link'
+                    onClick={removeOptions}
+                >
+                    Remove all
+                </button>
+            </div>
             <ol>{items}</ol>
-            <button
-                className='button button--link'
-                onClick={removeOptions}
-            >
-                Remove all
-            </button>
+            <div className='widget__message'>
+                <p>{options.length > 0 || 'Add an option to get started!'}</p>
+            </div>
         </div>
     )
 }

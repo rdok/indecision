@@ -81,15 +81,18 @@ export class App extends React.Component {
                         suggestedToDo={this.state.suggestedToDo}
                         handleTodoSuggestion={this.handleWhatTodoSuggestion}
                     />
-                    <ListOptions
-                        options={this.state.options}
-                        removeOptions={this.handleOptionsRemoval}
-                        handleDeleteOption={this.handleDeleteOption}
-                    />
-                    <CreateOption
-                        options={this.state.options}
-                        handleAddOption={this.handleAddOption}
-                    />
+                    <div className='widget'>
+                        <ListOptions
+                            options={this.state.options}
+                            removeOptions={this.handleOptionsRemoval}
+                            handleDeleteOption={this.handleDeleteOption}
+                        />
+                        <CreateOption
+                            options={this.state.options}
+                            handleAddOption={this.handleAddOption}
+                        />
+
+                    </div>
                     <ModalOption
                         option={this.state.suggestedToDo}
                         appElement={this.props.appElement}
