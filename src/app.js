@@ -74,25 +74,28 @@ export class App extends React.Component {
         return (
             <div>
                 <Header title={this.state.title} subtitle={this.state.subtitle}/>
-                <Action
-                    hasOptions={this.state.options.length > 0}
-                    suggestedToDo={this.state.suggestedToDo}
-                    handleTodoSuggestion={this.handleWhatTodoSuggestion}
-                />
-                <ListOptions
-                    options={this.state.options}
-                    removeOptions={this.handleOptionsRemoval}
-                    handleDeleteOption={this.handleDeleteOption}
-                />
-                <CreateOption
-                    options={this.state.options}
-                    handleAddOption={this.handleAddOption}
-                />
-                <ModalOption
-                    option={this.state.suggestedToDo}
-                    appElement={this.props.appElement}
-                    handleOptionConfirmation={this.handleOptionConfirmation}
-                />
+
+                <div className='container'>
+                    <Action
+                        hasOptions={this.state.options.length > 0}
+                        suggestedToDo={this.state.suggestedToDo}
+                        handleTodoSuggestion={this.handleWhatTodoSuggestion}
+                    />
+                    <ListOptions
+                        options={this.state.options}
+                        removeOptions={this.handleOptionsRemoval}
+                        handleDeleteOption={this.handleDeleteOption}
+                    />
+                    <CreateOption
+                        options={this.state.options}
+                        handleAddOption={this.handleAddOption}
+                    />
+                    <ModalOption
+                        option={this.state.suggestedToDo}
+                        appElement={this.props.appElement}
+                        handleOptionConfirmation={this.handleOptionConfirmation}
+                    />
+                </div>
             </div>
         )
     }
