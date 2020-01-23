@@ -24,9 +24,11 @@ export const ListOptions = ({options, removeOptions, handleDeleteOption}) => {
                 </button>
             </div>
             <ol>{items}</ol>
-            <div className='widget__message'>
-                <p>{options.length > 0 || 'Add an option to get started!'}</p>
-            </div>
+            {
+                options.length > 0 || <p className="widget__message">
+                    Add an option to get started!
+                </p>
+            }
         </div>
     )
 }

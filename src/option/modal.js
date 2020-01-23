@@ -11,9 +11,13 @@ export const ModalOption = ({appElement, option, handleOptionConfirmation}) => (
         contentLabel={config.title}
         appElement={appElement}
         onRequestClose={handleOptionConfirmation}
+        closeTimeoutMS={50}
+        className='modal'
     >
-        <h3>{config.title}</h3>
-        <p>{option}</p>
-        <button onClick={handleOptionConfirmation}>OK</button>
+        <h3 className='modal__title'>{config.title}</h3>
+        <p className='modal__body'>{option}</p>
+        <button className='button modal__body' onClick={handleOptionConfirmation}>
+            OK
+        </button>
     </Modal>
 )

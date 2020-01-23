@@ -9,8 +9,7 @@ import {ModalOption} from "./option/modal"
 export class App extends React.Component {
 
     state = {
-        title: 'Indecision Ap2',
-        subtitle: 'Put your life in the hands of a computer',
+        title: 'Indecision',
         options: ['Read', 'Train', 'Study', 'See a movie'],
         suggestedToDo: null
     }
