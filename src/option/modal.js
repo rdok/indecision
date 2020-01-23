@@ -16,7 +16,7 @@ export const ModalOption = ({appElement, option, handleOptionConfirmation}) => (
     >
         <h3 className='modal__title'>{config.title}</h3>
         <p className='modal__body'>{option}</p>
-        <button className='button modal__body' onClick={handleOptionConfirmation}>
+        <button className='button' onClick={handleOptionConfirmation}>
             OK
         </button>
     </Modal>

@@ -1,14 +1,15 @@
 .add-option
   display: flex
   padding: $m-size
+  flex-direction: column
 
 .add-option__input
   flex-grow: 1
+  margin: 0 0 $s-size 0
   border: none
   border-radius: 0
   background: $dark-blue
   border-bottom: .3rem solid darken($dark-blue, 10%)
-  margin-right: $s-size
   color: $off-white
   padding: $s-size
 
@@ -17,3 +18,10 @@
   font-style: italic
   padding: 0 0 $m-size $m-size
   margin: 0
+
+@media (min-width: $desktop-breakpoint)
+  .add-option
+    flex-direction: row
+
+  .add-option__input
+    margin: 0 $s-size 0 0
