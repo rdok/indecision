@@ -21,12 +21,14 @@ export class CreateOption extends React.Component {
 
     render = () => (
         <div>
-            <h3>New option</h3>
-            <form onSubmit={this.addOption.bind(this)}>
-                <input type="text" name="option"/>
+            <form className='add-option' onSubmit={this.addOption.bind(this)}>
+                <input className='add-option__input' type="text" name="option"/>
                 <button className='button'> Add</button>
-                {this.state.error && <p>{this.state.error}</p>}
             </form>
+            {
+                this.state.error
+                && <p className='add-option-error'>{this.state.error}</p>
+            }
         </div>
     )
 }

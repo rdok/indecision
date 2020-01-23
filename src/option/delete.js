@@ -4,5 +4,5 @@ export const DeleteOption = ({option, handleDeleteOption}) => (
     <button
         onClick={() => handleDeleteOption(option)}
         className='button--link'
-    >Delete</button>
+    >Remove</button>
 )
