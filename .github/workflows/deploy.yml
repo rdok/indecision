@@ -33,7 +33,7 @@ jobs:
     - name: Build
       run: |
         docker-compose run --rm node yarn
-        docker-compose run --rm node yarn run build
+        docker-compose run --rm node yarn run build:prod
     - name: Sync with S3
       run: aws s3 sync ./public s3://training-apps-rdok/indecision --delete
     - name: Create CloudFront invalidation

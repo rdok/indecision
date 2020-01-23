@@ -1,6 +1,7 @@
 node_cache/
 public/
 !public/index.html
+!public/favicon.ico
 
 # Logs
 logs
