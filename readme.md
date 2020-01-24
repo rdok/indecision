@@ -12,13 +12,8 @@
 ### Quickstart
 
 ```
-cp .env.example .env
-# If user id `id -u|-g` is not 1000, update accordingly
-
+docker-compose run --rm node yarn
 docker-compose up -d
-docker-compose exec node yarn
 ```
 
 Visit [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
-
-

@@ -5,13 +5,16 @@ import {Header} from "./header"
 import {Action} from "./action"
 import {CreateOption, ListOptions} from "./option/index"
 import {ModalOption} from "./option/modal"
+import Pagination from 'react-responsive-pagination'
 
 export class App extends React.Component {
 
     state = {
         title: 'Indecision',
         options: ['Read', 'Train', 'Study', 'See a movie'],
-        suggestedToDo: null
+        currentPage: 1,
+        perPage: 3,
+        suggestedToDo: null,
     }
 
     componentWillUnmount(prevProps, prevState) {
@@ -68,8 +71,11 @@ export class App extends React.Component {
         this.setState(() => ({options: []}))
     }
 
-    render() {
+    pageChangeHandler = (newPage) => {
+        this.setState(() => ({currentPage: newPage}))
+    }
 
+    render(context) {
         return (
             <div>
                 <Header title={this.state.title} subtitle={this.state.subtitle}/>
@@ -82,15 +88,29 @@ export class App extends React.Component {
                     />
                     <div className='widget'>
                         <ListOptions
-                            options={this.state.options}
+                            options={
+                                this.state.options.slice(
+                                    this.state.perPage * (this.state.currentPage - 1),
+                                    this.state.perPage * (this.state.currentPage - 1) + this.state.perPage
+                                )
+                            }
                             removeOptions={this.handleOptionsRemoval}
                             handleDeleteOption={this.handleDeleteOption}
                         />
+
+
+                        <Pagination
+                            current={this.state.currentPage}
+                            total={Math.ceil(
+                                this.state.options.length / this.state.perPage
+                            )}
+                            onPageChange={this.pageChangeHandler}
+                        />
+
                         <CreateOption
                             options={this.state.options}
                             handleAddOption={this.handleAddOption}
                         />
-
                     </div>
                     <ModalOption
                         option={this.state.suggestedToDo}

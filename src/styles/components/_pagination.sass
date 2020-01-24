@@ -1,0 +1,36 @@
+.pagination
+  margin: 0 0 $l-size 0
+  padding: 0 0 $s-size 0
+  border-bottom: 1px solid lighten($light-blue, 5%)
+  list-style-type: none
+  display: flex
+  justify-content: center
+
+.page-item
+  float: left
+  padding: .6rem .8rem 0 .8rem
+  font-size: 2rem
+
+.page-link
+  color: $off-white
+  text-decoration: none
+
+
+.page-item:first-child span
+  font-weight: bolder
+
+.page-item:first-child  .sr-only
+  display: none
+
+.page-item:last-child span
+  font-weight: bolder
+
+.page-item:last-child  .sr-only
+  display: none
+
+.page-item.active .sr-only
+  display: none
+
+.page-item.active span
+  font-weight: bolder
+  text-decoration: underline
