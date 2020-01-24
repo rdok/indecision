@@ -63,7 +63,7 @@ export class App extends React.Component {
             throw 'The selected option already exists.'
         }
         this.setState((previousState) => {
-            return {options: previousState.options.concat(option)}
+            return {options: [option].concat(previousState.options)}
         })
     }
 
