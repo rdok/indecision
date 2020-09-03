@@ -7,7 +7,7 @@
   "author": "Rizart Dokollari",
   "license": "MIT",
   "scripts": {
-    "dev-server": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "build:prod": "webpack -p --env production"
   },
   "dependencies": {
