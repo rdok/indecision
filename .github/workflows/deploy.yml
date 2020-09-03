@@ -9,18 +9,26 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_OUTPUT: ${{ secrets.AWS_DEFAULT_OUTPUT }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+      DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
     - uses: actions/checkout@v1
-    - name: Set env
+    - name: Build & deploy static assets
       run: |
-        echo ::set-env name=ID::$(id -u)
-        echo ::set-env name=GID::$(id -g)
-    - name: Build
-      run: make build
-    - name: Sync with S3
-      run: aws s3 sync ./public s3://training-apps-rdok/indecision --delete
-    - name: Create CloudFront invalidation
-      run: aws cloudfront create-invalidation  --distribution-id "${AWS_CLOUDFRONT_DISTRIBUTION_ID}" --paths /indecision/index.html /indecision/bundle.js
+        make build
+        aws s3 sync ./public s3://training-apps-rdok/indecision --delete
+    - name: Invalidate CloudFront Distribution
+      run: |
+        INVALIDATION_ID=$(
+          aws cloudfront create-invalidation  \
+            --distribution-id "${DISTRIBUTION_ID}" \
+            --paths /indecision/index.html /indecision/bundle.js \
+            --query 'Invalidation.Id' \
+            --output text
+        )
+        bash bin/wait-for-invalidation.sh "${DISTRIBUTION_ID}" "${INVALIDATION_ID}"
+    - name: Check site status
+      uses: rdok/http-status-action@v1
+      with:
+        sites: '["https://rdok.co.uk/indecision/index.html"]'
+        expected: '[200]'

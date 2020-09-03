@@ -1,19 +1,13 @@
 # Indecision
-![Deployment](https://github.com/rdok/indecision/workflows/CI/badge.svg) 
-> Hands on React fundamentals 
+
+[![deploy](https://github.com/rdok/indecision/workflows/deploy/badge.svg)](https://github.com/rdok/indecision/actions?query=workflow%3Adeploy)
+
+This projects acts as a medium to practise React.
 
 
-### Specs
-- List of options (restaurant, business to start)
-- You populate the list with all of the options
-- You click on primary button 
-- It decides what you're going to do; by randomly picking an item, showing to you
-
-### Quickstart
+### Development
+> Depedency: docker
 
 ```
-docker-compose run --rm node yarn
-docker-compose up -d
+make
 ```
-
-Visit [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
