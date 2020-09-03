@@ -2,22 +2,13 @@ version: '3'
 
 services:
 
-  dev-server:
+  web:
     restart: always
-    image: node:13-alpine3.11
-    command: yarn run dev-server
+    image: node:14-alpine3.12
+    command: yarn start
     working_dir: /app
+    user: "${UID}:${GID}"
     volumes:
       - .:/app
     ports:
       - "8080:8080"
-
-  node:
-    restart: always
-    image: node:13-alpine3.11
-    command: tail -f /dev/null
-    working_dir: /app
-    environment:
-      - YARN_CACHE_FOLDER=/app/node_cache/yarn
-    volumes:
-      - .:/app
