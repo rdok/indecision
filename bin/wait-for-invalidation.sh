@@ -19,8 +19,8 @@ while : ; do
 
   RANDOM_TIME_TO_WAIT=$((3 + RANDOM % 7)); 
 
-  echo "Invalidation still in progress."
-  echo "Waiting for ${RANDOM_TIME_TO_WAIT} second."
+  echo "Invalidation is still in progress."
+  echo "Waiting for ${RANDOM_TIME_TO_WAIT} seconds."
 
   sleep ${RANDOM_TIME_TO_WAIT}
 done

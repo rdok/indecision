@@ -21,7 +21,7 @@ jobs:
       run: make build
     - name: Sync with S3
       run: aws s3 sync ./public s3://training-apps-rdok/indecision --delete
-    - name: Create CloudFront invalidation
+    - name: Invalidation CloudFront Distribution
       run: |
         INVALIDATION_ID=$(
           aws cloudfront create-invalidation  \
@@ -31,3 +31,8 @@ jobs:
             --output text
         )
         bash bin/wait-for-invalidation.sh "${DISTRIBUTION_ID}" "${INVALIDATION_ID}"
+    - name: Check status
+      uses: rdok/gh-actions-http-status@v1
+      with:
+        sites: '["https://rdok.co.uk/indecision/index.html"]'
+        expected: '[200]'
