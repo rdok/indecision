@@ -35,4 +35,4 @@ jobs:
       uses: rdok/gh-actions-http-status@v1
       with:
         sites: '["https://rdok.co.uk/indecision/index.html"]'
-        expected: '[200]'
+        expected: '[201]'
