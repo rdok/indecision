@@ -1,5 +1,7 @@
 # Indecision
-![Deployment](https://github.com/rdok/indecision/workflows/CI/badge.svg) 
+
+![deploy](https://github.com/rdok/indecision/workflows/deploy/badge.svg)
+
 > Hands on React fundamentals 
 
 
