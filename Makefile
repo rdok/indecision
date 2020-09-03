@@ -2,7 +2,7 @@ export UID = $(id -u)
 export GID = $(id -g)
 
 start: install
-	docker-compose up -d
+	docker-compose up
 
 install:
 	docker-compose run --rm web yarn
