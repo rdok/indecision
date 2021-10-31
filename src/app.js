@@ -28,10 +28,10 @@ export class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const optionsChanged =
+    const optionsHaveChanged =
       JSON.stringify(prevState.options) !== JSON.stringify(this.state.options);
 
-    if (!optionsChanged) return;
+    if (!optionsHaveChanged) return;
 
     localStorage.setItem("options", JSON.stringify(this.state.options));
   }
