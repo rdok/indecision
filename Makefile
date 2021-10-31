@@ -12,3 +12,9 @@ shell:
 
 build: install
 	docker-compose run --rm web yarn build:prod
+
+prettier:
+	yarn prettier
+
+prettier-fix:
+	yarn prettier:fix

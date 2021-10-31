@@ -8,9 +8,11 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "build:prod": "webpack --no-devtool --env production --progress --color"
+    "build:prod": "webpack --no-devtool --env production --progress --color",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
@@ -29,6 +31,7 @@
     "validator": "^13.6.0",
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.4.0"
+    "webpack-dev-server": "^4.4.0",
+    "prettier": "2.4.1"
   }
 }
