@@ -4,7 +4,7 @@ services:
 
   web:
     restart: always
-    image: node:14-alpine3.12
+    image: node:16-alpine3.14
     command: yarn start
     working_dir: /app
     user: "${UID}:${GID}"
