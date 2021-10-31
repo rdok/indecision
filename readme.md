@@ -6,7 +6,7 @@ This projects acts as a medium to practise React.
 
 
 ### Development
-> Depedency: docker
+> Dependency: docker & docker-compose
 
 ```
 make
