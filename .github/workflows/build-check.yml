@@ -1,9 +1,9 @@
 name: build-check
 on:
   push:
-    branches: 
+    branches:
       - '**'
-      - '!master'
+      - '!main'
 jobs:
   build-check:
     runs-on: ubuntu-latest
