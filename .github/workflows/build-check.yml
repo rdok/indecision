@@ -2,12 +2,12 @@ name: build-check
 on:
   push:
     branches:
-      - '**'
-      - '!main'
+      - "**"
+      - "!main"
 jobs:
   build-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Build
-      run: make build
+      - uses: actions/checkout@v1
+      - run: yarn prettier
+      - run: make build

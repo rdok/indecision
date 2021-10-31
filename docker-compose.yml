@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   web:
     restart: always
     image: node:16-alpine3.14

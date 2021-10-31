@@ -4,8 +4,8 @@
 
 This projects acts as a medium to practise React.
 
-
 ### Development
+
 > Dependency: docker & docker-compose
 
 ```

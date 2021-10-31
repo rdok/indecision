@@ -15,23 +15,23 @@ jobs:
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
-    - uses: actions/checkout@v1
-    - name: Build & deploy static assets
-      run: |
-        make build
-        aws s3 sync ./public s3://training-apps-rdok/indecision --delete
-    - name: Invalidate CloudFront Distribution
-      run: |
-        INVALIDATION_ID=$(
-          aws cloudfront create-invalidation  \
-            --distribution-id "${DISTRIBUTION_ID}" \
-            --paths /indecision/index.html /indecision/bundle.js \
-            --query 'Invalidation.Id' \
-            --output text
-        )
-        bash bin/wait-for-invalidation.sh "${DISTRIBUTION_ID}" "${INVALIDATION_ID}"
-    - name: Check site status
-      uses: rdok/http-status-action@v1
-      with:
-        sites: '["https://rdok.co.uk/indecision/index.html"]'
-        expected: '[200]'
+      - uses: actions/checkout@v1
+      - name: Build & deploy static assets
+        run: |
+          make build
+          aws s3 sync ./public s3://training-apps-rdok/indecision --delete
+      - name: Invalidate CloudFront Distribution
+        run: |
+          INVALIDATION_ID=$(
+            aws cloudfront create-invalidation  \
+              --distribution-id "${DISTRIBUTION_ID}" \
+              --paths /indecision/index.html /indecision/bundle.js \
+              --query 'Invalidation.Id' \
+              --output text
+          )
+          bash bin/wait-for-invalidation.sh "${DISTRIBUTION_ID}" "${INVALIDATION_ID}"
+      - name: Check site status
+        uses: rdok/http-status-action@v1
+        with:
+          sites: '["https://rdok.co.uk/indecision/index.html"]'
+          expected: "[200]"
