@@ -7,7 +7,7 @@ start: install
 install:
 	docker-compose run --rm web yarn
 
-sh:
+shell:
 	docker-compose run --rm web sh
 
 build: install
