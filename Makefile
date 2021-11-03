@@ -1,6 +1,8 @@
 export UID = $(id -u)
 export GID = $(id -g)
 
+check: prettier
+
 start: install
 	docker-compose up
 
