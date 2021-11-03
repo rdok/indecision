@@ -1,6 +1,6 @@
 name: build-check
 on:
-  push:
+  pull_request:
     branches:
       - "**"
       - "!main"
@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: yarn prettier
+      - run: maker prettier
       - run: make build
