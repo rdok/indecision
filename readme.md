@@ -9,5 +9,5 @@ This projects acts as a medium to practise React.
 > Dependency: docker & docker-compose
 
 ```
-make
+make start
 ```
