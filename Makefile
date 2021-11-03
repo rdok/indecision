@@ -1,6 +1,8 @@
 export UID = $(id -u)
 export GID = $(id -g)
 
+check: prettier
+
 start: install
 	docker-compose up
 
@@ -13,8 +15,8 @@ shell:
 build: install
 	docker-compose run --rm web yarn build:prod
 
-prettier:
-	yarn prettier
+prettier: install
+	docker-compose run --rm web yarn prettier
 
 prettier-fix:
-	yarn prettier:fix
+	docker-compose run --rm web yarn prettier:fix
