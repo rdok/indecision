@@ -1,5 +1,6 @@
 export UID = $(id -u)
 export GID = $(id -g)
+export CURRENT_DIR=$(shell pwd)
 
 check: prettier
 
@@ -7,7 +8,7 @@ start: install
 	docker-compose up
 
 install:
-	docker-compose run --rm web yarn
+	docker-compose run --rm -v $$CURRENT_DIR:/app web yarn
 
 shell:
 	docker-compose run --rm web sh
