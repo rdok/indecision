@@ -3,11 +3,12 @@ on:
   push:
     branches: [main]
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     environment:
       name: "prod"
       url: "https://rdok.co.uk/indecision/index.html"
+    concurrency: "prod"
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
@@ -15,7 +16,7 @@ jobs:
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.4.0
       - name: Build & deploy static assets
         run: |
           make build
