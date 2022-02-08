@@ -21,3 +21,7 @@ prettier: install
 
 prettier-fix:
 	docker-compose run --rm web yarn prettier:fix
+
+maintenance-update-dependencies:
+			yarn upgrade-interactive --latest
+
