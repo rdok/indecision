@@ -6,6 +6,6 @@ jobs:
   build-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
       - run: make prettier
       - run: make build
